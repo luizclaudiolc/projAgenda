@@ -1,0 +1,59 @@
+<%- include('includes/head') %> 
+<%- include('includes/navbar') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+
+    <div class="col-lg-8 my-4">
+      <h1 class="text-center">Contatos</h1>
+      <p class="text-center lead">
+        Crie ou atualize os seus contatos.
+      </p>
+
+      <%- include('includes/messege') %>
+
+      <% if(contato._id) { %>
+        <form class="form-horizontal" role="form" method="POST" action="/contato/edit/<%= contato._id %>">
+        <% } else { %>
+          <form class="form-horizontal contato" role="form" method="POST" action="/contato/register">
+      <% } %>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="form-group">
+          <label class="col-lg-2 control-label">Nome</label>
+          <div class="col-lg-10">
+            <input value="<%= contato.nome %>" type="text" class="form-control" name="nome" placeholder="Nome" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">Sobrenome</label>
+          <div class="col-lg-10">
+            <input value="<%= contato.sobrenome %>" type="text" class="form-control" name="sobrenome" placeholder="Sobrenome">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">Email</label>
+          <div class="col-lg-10">
+            <input value="<%= contato.email %>" type="email" class="form-control" name="email" placeholder="Email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">Telefone</label>
+          <div class="col-lg-10">
+            <input value="<%= contato.nome %>" type="tel" class="form-control" name="telefone" placeholder="Telefone">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <button type="submit" class="btn btn-primary">
+              Salvar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+
+<%- include('includes/footer') %>
